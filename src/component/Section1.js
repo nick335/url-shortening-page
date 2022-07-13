@@ -1,6 +1,7 @@
 import React, { useCallback } from "react";
 import InputDiv from "./InputDiv";
 import axios from "axios";
+import { useUpdateEffect } from "react-use";
 
 
 export default function Section1(){
@@ -9,19 +10,26 @@ export default function Section1(){
   const [url, setUrl] = React.useState('')
   const [result, setResult] = React.useState()
   const [errormessage, setErrorMessage] = React.useState('')
+  const [loading, setLoading] = React.useState(false);
   // const [output, setOutput] = React.useState([])
   
   const urlRef = React.useRef('')
+
+//   const [didMount, setDidMount] = React.useState(false)
+
+// // Setting didMount to true upon mounting
+//   React.useEffect(() => { setDidMount(true) }, [])
   const fetchData = useCallback( async () => {
     try {
-      // setLoading(true);
+      console.log('trying')
       const res = await axios(`https://api.shrtco.de/v2/shorten?url=${url}`);
       setResult(res.data.result);
       console.log(res)
       console.log(res.data.result)
     } catch(err) {
-      // setError(err);
-      console.log('error')
+      setLoading(false)
+      setError(true)
+      setErrorMessage('invalid url')
     } finally {
       // setLoading(false);
       console.log('loading')
@@ -29,10 +37,8 @@ export default function Section1(){
   }, [url]) 
 
 
-  React.useEffect(() => {
-
-  fetchData()
-
+  useUpdateEffect(() => {
+      fetchData()
   }, [fetchData])
 
   
@@ -40,10 +46,16 @@ export default function Section1(){
     setInput(event.target.value)
   }
    function handleClick(){
+
+    if(!input.length){
+      setError(true)
+      setErrorMessage('please add a link')
+    }else{
       setUrl(urlRef.current.value)
-      setInput('')
-      console.log(result)
+      setLoading(true);
+      setErrorMessage('loading')
       if(result){
+
         if(result.ok){
           const object = {
             prevurl: result.result.original_link,
@@ -58,6 +70,8 @@ export default function Section1(){
 
         }
       }
+    }
+      
     
   }
   function handleInputClick(){
@@ -74,6 +88,7 @@ export default function Section1(){
         errormessage = {errormessage}
         value = {input}
         url={urlRef}
+        loading = {loading}
       />
     </section>
   )

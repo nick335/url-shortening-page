@@ -43,8 +43,11 @@
     left: 5px;
     font-size: 0.75rem;
     font-style: italic; 
-    color: $error;
+    color: $primary-text-color;
     display: none;
+  }
+  .error-color{
+    color: $error;
   }
   .display-error-message{
     display: block;
