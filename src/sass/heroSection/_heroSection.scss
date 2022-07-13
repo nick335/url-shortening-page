@@ -1,0 +1,50 @@
+@use '../abstracts/colors.scss' as *;
+@use '../abstracts/mixins.scss' as *;
+
+
+.hero-section{
+  overflow: hidden;
+  &-container{
+    margin-top: 2rem;
+    margin-left: 10rem;
+    @include justFlex;
+    
+  }
+  &-info{
+    margin-top: 4.3rem;
+    &-header{
+      font-size: 4.9rem;
+      font-weight: 700;
+      line-height: 1.1;
+      color: $secondary-text-color;
+    }
+    &-para{
+      margin-top: 0.2rem;
+      font-weight: 500;
+      font-size: 1.1rem;
+      color: $primary-text-color;
+      margin-right: 90px;
+      line-height: 1.4;
+    }
+    .hero-btn{
+      margin-top: 0.5rem;
+      @include defaultBtn;
+      @include primaryBtn;
+      padding: 0.9rem 2rem;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 1rem;
+
+      @media(hover: hover){
+        &:hover{
+          opacity: 0.7;
+        }
+      }
+    }
+  }
+  &-imgDiv{
+    &-img{
+      margin-right: -90px;
+    }
+  }
+}

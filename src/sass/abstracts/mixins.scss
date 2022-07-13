@@ -1,0 +1,42 @@
+@use './colors.scss' as *;
+
+@mixin flex {
+  display: flex;
+  align-items: center;
+}
+
+@mixin defaultBtn{
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+@mixin primaryBtn {
+  background-color:$primary-btn;
+  color: white;
+}
+@mixin justFlex{
+  display: flex;
+ }
+ 
+ @mixin flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ }
+ 
+ @mixin flexSpaceBetween {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+ }
+ 
+ @mixin flexColumn{
+  display: flex;
+  flex-direction: column;
+ }
+ 
+ @mixin flexColumReverse{
+  display: flex;
+  flex-direction: column-reverse;
+ }

@@ -1,0 +1,109 @@
+@use '../abstracts/colors.scss' as *;
+@use '../abstracts/mediaquery.scss' as *;
+@use '../abstracts/mixins.scss' as *;
+
+
+@media #{$media-desktop}{
+  .header{
+
+    &-container{
+      padding: 0 5rem;
+      padding-top: 2rem;
+    }
+  }
+}
+
+@media #{$media-mobile-sm}{
+  .header{
+    &-container{
+      padding: 0 1.5rem;
+      padding-top: 1.5rem;
+      
+    }
+    .nav{
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+
+      &-mobile{
+        position: absolute;
+        top: -5000px;
+        left: 0;
+        @include flexColumn;
+        background-color: $primary-bg;
+        border-radius: 10px;
+        width: 94%;
+        margin: 0 3%;
+        padding: 30px 20px;
+        z-index: 1000000;
+      }
+      .active{
+        animation: menudown 0.1s ease-in 1 both;
+        animation-delay: 0.2s;
+      }
+
+      @keyframes menudown {
+        0% {
+          top: -5000px;
+        }
+        100%{
+          top: 50px;
+        }
+      }
+
+      &-list{
+        border-bottom: 1px solid $primary-text-color;
+
+
+        &-items{
+          @include flexColumn;
+          align-items: center;
+        }
+
+        &-item{
+          margin-right: 0;
+          margin-bottom: 1.5rem;
+          color: white;
+        }
+      }
+      &-btn{
+        margin-left: 0;
+        @include flexColumn;
+        align-items: center;
+        margin-top: 25px;
+
+        .login{
+          color: white;
+          margin-bottom: 20px;
+          margin-left: 28px;
+        }
+        .signup{
+          width: 100%;
+        }
+      }
+      .navbar_toggle{
+        display: block;
+        
+          
+        .bar{
+          width: 25px;
+          height: 2px;
+          margin: 5px auto;
+          transition: all 0.3s ease-in-out;
+          background: $primary-text-color;
+          display: block;
+          cursor: pointer;
+          }
+      }
+      .navbar_toggle.is-active .bar:nth-child(2){
+        opacity: 0;
+       }
+       .navbar_toggle.is-active .bar:nth-child(1){
+        transform: translateY(7px) rotate(45deg);
+       }
+      .navbar_toggle.is-active .bar:nth-child(3){
+        transform: translateY(-7px) rotate(-45deg);
+       }
+    }
+  }
+}

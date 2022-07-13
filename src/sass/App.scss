@@ -1,0 +1,9 @@
+@use './abstracts/colors.scss' as *;
+@use './abstracts/mixins.scss' as *;
+@use './abstracts/reset.scss';
+@use './header/header';
+@use './header/headerMediaQuery';
+@use './heroSection/heroSection';
+@use './heroSection/heroSectionMediaQuery';
+@use './main/mains';
+@use './main/Section1/section1';

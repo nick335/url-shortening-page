@@ -1,0 +1,55 @@
+@use '../../abstracts/mixins.scss' as * ;
+@use  '../../abstracts/fonts.scss' as *;
+@use '../../abstracts/colors.scss' as *;
+
+
+.section1{
+  @include flexColumn;
+  align-items: center;
+
+  .input-div{
+    width: 75%;
+    background-color: $primary-bg;
+    padding: 1.9rem 3rem;
+    border-radius: 5px;
+    background-image: url('../../../images/bg-shorten-desktop.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    &-bg{
+      display: flex;
+      position: relative;
+    }
+    
+  }
+  .input{
+    width: 80%;
+    padding: 0.7rem 0.9rem;
+    margin-right: 1.5%;
+    outline: none;
+    border: none;
+    border-radius: 5px; 
+  }
+  .input-btn{
+    width: 18.5%;
+    @include defaultBtn;
+    @include primaryBtn;
+    border-radius: 5px;
+  }
+  .error-message{
+    position: absolute;
+    top: 44px;
+    left: 5px;
+    font-size: 0.75rem;
+    font-style: italic; 
+    color: $error;
+    display: none;
+  }
+  .display-error-message{
+    display: block;
+  }
+  .input-error{
+    border: 2px solid $error;
+  }
+}

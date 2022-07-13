@@ -1,0 +1,81 @@
+@use '../abstracts/mediaquery.scss' as *;
+@use '../abstracts/colors.scss' as *;
+@use '../abstracts/mixins.scss' as *;
+
+@media #{$media-desktop}{
+  .hero-section{
+    &-container{
+      margin-left: 5rem;
+      margin-top: 1rem;
+    }
+    &-info{
+      margin-top: 4.9rem;
+
+      &-header{
+        font-size: 3.9rem;
+      }
+      &-para{
+        margin-top: 0.5rem;
+        margin-right: 30px;
+        margin-bottom: 0.5rem;
+      }
+      .hero-btn{
+        margin-top: 0.7rem;
+      }
+    }
+    &-imgDiv{
+      width: 50%;
+      &-img{
+        width: 610px;
+        height: 400px;
+        object-fit: cover;
+      }
+    }
+  }
+}
+
+@media #{$media-mobile-sm}{
+  .hero-section{
+    &-container{
+      @include flexColumReverse;
+      margin-left: 0;
+
+    }
+    &-info{
+      margin-top: 1rem;
+      padding: 0 1rem;
+      @include flexColumn;
+      align-items: center;
+      &-header{
+        font-size: 2.3rem;
+        text-align: center;
+        margin-bottom: 0.3rem;
+      }
+
+      &-para{
+      margin-right: 0px;
+      text-align: center;
+      font-size: 1rem;
+    }
+    .hero-btn{
+      width: fit-content;
+      
+    }
+    }
+    
+    &-imgDiv{
+      width: 100%;
+      // display: none;
+      margin-right: -300px !important;
+        &-img{
+        // width: 90%;
+        width: 500px;
+        height: 350px;
+        // margin-left: 10px;
+        margin-right: -200px;
+        margin-left: 12px;
+        object-fit: contain;
+      }
+    }
+  }
+}
