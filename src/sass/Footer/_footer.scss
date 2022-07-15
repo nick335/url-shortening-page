@@ -1,0 +1,58 @@
+@use '../abstracts/mixins.scss' as * ;
+@use  '../abstracts/fonts.scss' as *;
+@use '../abstracts/colors.scss' as *;
+
+.footer{
+  background-color: $secondary-bg-dark;
+
+  &-div{
+    padding: 3.5rem 10rem;
+    @include justFlex;
+    
+    .footer_link-logo{
+      margin-left: auto;
+      @include justFlex
+    }
+    .link-divs{
+      @include justFlex;
+      // margin-right: 5rem;
+    }
+    .link-div{
+      margin-right: 5rem;
+      &-header{
+        font-weight: 700;
+        font-size: 1.1rem;
+        color: $secondary-bg-light;
+        margin-bottom: 0.9rem;
+      }
+      .link{
+        font-size: 0.9rem;
+        // font-weight: 500;
+        color: $primary-text-color;
+        margin-bottom: 0.5rem;
+        cursor: pointer;
+
+        @media(hover: hover){
+          &:hover{
+            color: $primary-btn;
+          }
+        }
+      }
+    }
+    .logos{
+      @include justFlex;
+    }
+    .social-icon{
+      font-size: 28px;
+      margin-left: 1rem;
+      color: white;
+      cursor: pointer;
+
+      @media(hover : hover){
+        &:hover{
+          color: $primary-btn;
+        }
+      }
+    }
+  }
+}

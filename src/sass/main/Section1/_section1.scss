@@ -6,17 +6,16 @@
 .section1{
   @include flexColumn;
   align-items: center;
-
   .input-div{
-    width: 75%;
+    width: 100%;
     background-color: $primary-bg;
-    padding: 1.9rem 3rem;
+    padding: 2.2rem 3rem;
     border-radius: 5px;
     background-image: url('../../../images/bg-shorten-desktop.svg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-
+    margin-top: -60px;
     &-bg{
       display: flex;
       position: relative;
@@ -24,32 +23,123 @@
     
   }
   .input{
-    width: 80%;
-    padding: 0.7rem 0.9rem;
+    width: 83%;
+    padding: 0.9rem 0.9rem;
     margin-right: 1.5%;
     outline: none;
     border: none;
     border-radius: 5px; 
   }
   .input-btn{
-    width: 18.5%;
+    width: 15.5%;
     @include defaultBtn;
     @include primaryBtn;
     border-radius: 5px;
   }
   .error-message{
     position: absolute;
-    top: 44px;
+    top: 52px;
     left: 5px;
     font-size: 0.75rem;
     font-style: italic; 
-    color: $error;
+    color: $primary-text-color;
     display: none;
+  }
+  .error-color{
+    color: $error;
+  }
+  .success-color{
+    color: lightgreen;
   }
   .display-error-message{
     display: block;
   }
   .input-error{
     border: 2px solid $error;
+  }
+
+  .outputs{
+    margin-top: 1rem;
+    width: 100%;
+
+    .output{
+      width: 100%;
+      background-color: white;
+      border-radius: 5px;
+      @include justFlex;
+      padding: 0.6rem 1rem;
+      align-items: center;
+      margin-bottom: 1rem;
+
+      .left-side{
+        @include justFlex;
+        flex-wrap: wrap;
+        width: 55%;
+        margin-right: 20px;
+        overflow: hidden;
+        word-wrap: break-word;
+        hyphens: auto;
+        white-space: normal!important; 
+      }
+      &_prevurl{
+        width: 100%;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        font-size: 14px;
+        color: $secondary-text-color;
+        
+      }
+      .right-side{
+        // text-align: center;
+        display: flex;
+        // align-items: center;
+        margin-left: auto;
+
+        span{
+          display: flex;
+          align-items: center;
+        }
+      }
+      &_currenturl{
+        // margin-left: auto;
+        margin-right: 10px;
+        font-size: 14px;
+        color: $primary-btn;
+        cursor: pointer;
+      }
+      .btn-div{
+        display: flex;
+      }
+      &_btn{
+        margin-right: 1rem;
+        @include defaultBtn;
+        @include primaryBtn;
+        padding:0.6rem 1.5rem ;
+        border-radius: 6px;
+
+        @media(hover: hover){
+          &:hover{
+            opacity: 0.6;
+          }
+        }
+      }
+      .copied{
+        background-color: $primary-bg;
+      }
+      &_delbtn{
+      @include defaultBtn;
+
+      .trash{
+        color: $primary-text-color;
+        font-size: 20px;
+        @media(hover: hover){
+          &:hover{
+            color: $error;
+          }
+        }
+      }
+    }
+    }
+    
   }
 }

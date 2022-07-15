@@ -1,0 +1,31 @@
+@use '../../abstracts/mixins.scss' as * ;
+@use  '../../abstracts/fonts.scss' as *;
+@use '../../abstracts/colors.scss' as *;
+
+
+.section3{
+  margin-top: 1.8rem;
+  padding:3rem 0;
+  @include flexColumn;
+  align-items: center;
+  background-image: url('../../../images/bg-boost-desktop.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-color: $primary-bg;
+
+  &-header{
+    font-size: 2.7rem;
+    font-weight: 700;
+    color: $secondary-bg-light;
+  }
+  &-btn{
+    @include defaultBtn;
+    @include primaryBtn;
+    margin-top: 1.7rem;
+    padding: 1rem 2.9rem;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+}
