@@ -1,0 +1,10 @@
+@use '../abstracts/colors.scss' as *;
+@use '../abstracts/mediaquery.scss' as *;
+
+
+@media #{$media-mobile-sm}{
+  .main{
+    padding: 0 1rem;
+  }
+}
+
