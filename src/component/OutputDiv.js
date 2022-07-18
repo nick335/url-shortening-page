@@ -4,7 +4,7 @@ import { nanoid } from "nanoid";
 
 export default function OutputDiv(props){
   const ouputData= props.output
-  const elements = ouputData.map(each => {
+  const elements = ouputData ? ouputData.map(each => {
     
     return <Output 
              prevurl = {each.prevurl}
@@ -15,7 +15,7 @@ export default function OutputDiv(props){
              key = {nanoid()}
              copy = {props.copy}
             />
-  })
+  }) : ''
   return(
     <div className="outputs">
      {elements}
