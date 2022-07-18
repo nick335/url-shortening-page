@@ -1,67 +1,126 @@
 import React, { useCallback } from "react";
 import InputDiv from "./InputDiv";
-import axios from "axios";
+import { useUpdateEffect } from "react-use";
+import { nanoid } from "nanoid";
+import OutputDiv from "./OutputDiv";
 
 
 export default function Section1(){
   const [input, setInput]= React.useState('')
   const [error, setError] = React.useState(false)
   const [url, setUrl] = React.useState('')
-  const [result, setResult] = React.useState()
+  const [success, setSuccess] = React.useState(false)
   const [errormessage, setErrorMessage] = React.useState('')
-  // const [output, setOutput] = React.useState([])
+  const [loading, setLoading] = React.useState(false);
+  const [output, setOutput] = React.useState(JSON.parse(localStorage.getItem('shortenedUrl')))
   
   const urlRef = React.useRef('')
-  const fetchData = useCallback( async () => {
-    try {
-      // setLoading(true);
-      const res = await axios(`https://api.shrtco.de/v2/shorten?url=${url}`);
-      setResult(res.data.result);
-      console.log(res)
-      console.log(res.data.result)
-    } catch(err) {
-      // setError(err);
-      console.log('error')
-    } finally {
-      // setLoading(false);
-      console.log('loading')
-    }
+
+
+ React.useEffect(()=>{
+  localStorage.setItem('shortenedUrl', JSON.stringify(output))
+ }, [output])
+
+  const fetchData = useCallback( () => {
+    fetch(`https://api.shrtco.de/v2/shorten?url=${url}`)
+    .then((data) => data.json())
+    .then((actualData) => {
+      if(!actualData.ok){
+        setLoading(false)
+        setError(true)
+        setErrorMessage(actualData.error)
+        setInput('')
+      }else{
+        setLoading(false)
+        setSuccess(true)
+        setErrorMessage('successful')
+        const resultObject = {
+          prevurl:actualData.result.original_link,
+          shorturl :actualData.result.full_short_link,
+          copied : false,
+          id: nanoid()
+        }
+        setOutput(prevItems => [resultObject, ...prevItems])
+        setInput('')
+      }
+    })
   }, [url]) 
 
-
-  React.useEffect(() => {
-
-  fetchData()
-
+  useUpdateEffect(() => {
+      fetchData()
   }, [fetchData])
 
   
   function handleChange(event){
-    setInput(event.target.value)
+    if(input === ''){
+      setError(false)
+      setLoading(false)
+      setSuccess(false)
+      setInput(event.target.value)
+    }else{
+      setInput(event.target.value)
+    }
+      
   }
    function handleClick(){
-      setUrl(urlRef.current.value)
-      setInput('')
-      console.log(result)
-      if(result){
-        if(result.ok){
-          const object = {
-            prevurl: result.result.original_link,
-            shorturl : result.result.full_short_link
-          }
-          
-          console.log(object)
-        }else{
-          setError(true)
-          setErrorMessage(result.error)
-          setResult('')
 
-        }
-      }
+    if(!input.length){
+      setError(true)
+      setErrorMessage('please add a link')
+    }else{
+      setUrl(urlRef.current.value)
+      setLoading(true);
+      setErrorMessage('loading...')
+    }
+      
     
   }
   function handleInputClick(){
     setError(false)
+    setLoading(false)
+    setSuccess(false)
+  }
+  function handleDelete(id){
+    const newState = output.filter(each => {
+      return each.id !== id
+  })
+  setOutput(newState)
+  }
+  const delay = ms => new Promise(
+    resolve => setTimeout(resolve, ms)
+  );
+
+  const handleCopy = async (id) =>{
+    const newState = output.map(each => {
+      if(each.id !== id){
+        return {
+          ...each,
+          copied : false
+        }
+      }else{
+        return{
+          ...each,
+          copied: true
+        }
+      }
+    })
+    setOutput(newState)
+    await delay(5000);
+
+    const resetState = output.map(each => {
+      if(each.id === id){
+        return{
+          ...each,
+          copied : false
+        }
+      }else{
+        return {
+          ...each,
+          copied: false
+        }
+      }
+    })
+    setOutput(resetState)
   }
 
   return(
@@ -74,6 +133,13 @@ export default function Section1(){
         errormessage = {errormessage}
         value = {input}
         url={urlRef}
+        loading = {loading}
+        success = {success}
+      />
+      <OutputDiv 
+        output = {output}
+        delete = {handleDelete}
+        copy = {handleCopy}
       />
     </section>
   )

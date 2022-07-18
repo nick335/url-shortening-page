@@ -1,0 +1,20 @@
+@use '../abstracts/colors.scss' as *;
+@use '../abstracts/mediaquery.scss' as *;
+
+
+@media #{$media-desktop}{
+  .main{
+
+  &-div{
+    padding: 0 5rem;
+  }
+  }
+}
+@media #{$media-mobile-sm}{
+  .main{
+    &-div{
+      padding: 0 1rem;
+    }
+  }
+}
+
