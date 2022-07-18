@@ -3,7 +3,10 @@ import React from "react";
 export default function InputDiv(props){
 
   let inputError= props.error ? 'input-error' : ''
-  let errorMessage = props.error ? 'display-error-message' : ""
+  let errorMessage = props.error || props.loading || props.success ? 'display-error-message' : ""
+  let errorcolor = props.error ? 'error-color' : ''
+  let successcolor = props.success ? 'success-color' : ''
+  const loader = props.loading ? 'loader' : ''
   return(
     <div className="input-div">
       <div className="input-div-bg">
@@ -15,9 +18,14 @@ export default function InputDiv(props){
           onClick = {props.oninputclick}
           value = {props.value}
           ref= {props.url}
+          onKeyPress={(e) => {
+            if (e.key === 'Enter') {
+              props.onclick()
+            }
+          }}
         />
         <button className="input-btn" onClick={props.onclick}>Shorten It!</button>
-        <p className={`error-message ${errorMessage}`}>{props.errormessage}</p>
+        <p className={`error-message ${errorMessage} ${errorcolor} ${successcolor} ${loader}`}>{props.errormessage}</p>
       </div>
     </div>
   )

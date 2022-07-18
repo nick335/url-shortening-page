@@ -1,0 +1,51 @@
+@use '../../abstracts/mediaquery.scss' as *;
+@use '../../abstracts/mixins.scss' as * ;
+@use  '../../abstracts/fonts.scss' as *;
+@use '../../abstracts/colors.scss' as *;
+
+@media #{$media-mobile-sm}{
+  .section2{
+
+    &-header-component{
+
+      &-header{
+        font-size: 1.9rem;
+        margin-bottom: 0.3rem;
+      }
+      &-para{
+        width: inherit;
+      }
+    }
+    &-body-component{
+
+      .boxes{
+        @include flexColumn;
+        align-items: center;
+        margin: 0 0.4rem;
+      }
+      .box-2{
+        margin: 0;
+      }
+      .box-3{
+        margin: 0;
+      }
+      .box{
+        @include flexColumn;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 4.1rem;
+        padding: 1rem 1.5rem;
+
+        &-para{
+          text-align: center;
+        }
+      }
+      .connecting-lines{
+        width: 7px;
+        height: 90%;
+        left: 49%;
+        top: 0;
+      }
+    }
+  }
+}

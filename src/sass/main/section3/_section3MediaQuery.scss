@@ -1,0 +1,16 @@
+@use '../../abstracts/mediaquery.scss' as *;
+@use '../../abstracts/mixins.scss' as * ;
+@use  '../../abstracts/fonts.scss' as *;
+@use '../../abstracts/colors.scss' as *;
+
+
+@media #{$media-mobile-sm}{
+  .section3{
+    background-image: url('../../../images/bg-boost-mobile.svg');
+    padding: 5.5rem 0;
+
+    &-header{
+      font-size: 1.7rem;
+    }
+  }
+}
