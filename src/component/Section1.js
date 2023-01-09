@@ -12,7 +12,7 @@ export default function Section1(){
   const [success, setSuccess] = React.useState(false)
   const [errormessage, setErrorMessage] = React.useState('')
   const [loading, setLoading] = React.useState(false);
-  const [output, setOutput] = React.useState(JSON.parse(localStorage.getItem('shortenedUrl')))
+  const [output, setOutput] = React.useState(JSON.parse(localStorage.getItem('shortenedUrl')) || [])
   
   const urlRef = React.useRef('')
 
